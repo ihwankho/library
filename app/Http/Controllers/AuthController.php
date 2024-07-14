@@ -32,7 +32,7 @@ class AuthController extends Controller
         Auth::login($user);
 
         // Arahkan ke dashboard
-        return redirect()->route('login')->with('success', 'Registration successfully Please login');
+        return redirect()->route('login')->with('ihwan', 'Registration successfully Please login');
     }
 
     // Metode untuk login
@@ -49,7 +49,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             // Arahkan ke dashboard
-            return redirect()->route('book.index')->with('Login Successfully');
+            return redirect()->route('customer.index')->with('farid', 'Login Successfully');
         }
 
         // Jika gagal

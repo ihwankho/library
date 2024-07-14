@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('pages.login');
 })->name('login');
 
-Route::resource('/book', BookController::class)->middleware('LoginSek');
+Route::resource('/customer', CustomerController::class)->middleware('LoginSek');
 
 
 

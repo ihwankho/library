@@ -3,7 +3,7 @@
 @section('body')
 <div class="d-flex align-items-center justify-content-between">
     <h1 class="mb-0">List Customer</h1>
-    <a href="{{ route('book.create') }}" class="btn btn-primary">Add Customer</a>
+    <a href="{{ route('customer.create') }}" class="btn btn-primary">Add Customer</a>
 </div>
 <hr />
 @if(Session::has('success'))
@@ -11,6 +11,13 @@
     {{ Session::get('success') }}
 </div>
 @endif
+
+@if(Session::has('farid'))
+<div class="alert alert-success" role="alert">
+    {{ Session::get('farid') }}
+</div>
+@endif
+
 <table class="table table-hover">
     <thead class="table-primary">
         <tr>
@@ -22,17 +29,17 @@
         </tr>
     </thead>
     <tbody>
-        @forelse($books as $book)
+        @forelse($customers as $customer)
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $book->name }}</td>
-            <td>{{ $book->author }}</td>
-            <td>{{ $book->year }}</td>
+            <td>{{ $customer->id_customer }}</td>
+            <td>{{ $customer->name }}</td>
+            <td>{{ $customer->phone }}</td>
             <td>
                 <div class="btn-group" role="group" aria-label="Customer Actions">
-                    <a href="{{ route('book.show', $book->id) }}" class="btn btn-secondary">Detail</a>
-                    <a href="{{ route('book.edit', $book->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('book.destroy', $book->id) }}" method="POST">
+                    <a href="{{ route('customer.show', $customer->id) }}" class="btn btn-secondary">Detail</a>
+                    <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ route('customer.destroy', $customer->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this customer?')">Delete</button>

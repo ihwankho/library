@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class BookController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books= Book::orderBy('created_at', 'DESC')->get();
+        $customers = Customer::orderBy('created_at', 'DESC')->get();
 
-        return view('pages.book.index', compact('books'));
+        return view('pages.customer.index', compact('customers'));
     }
 
     /**
@@ -26,7 +26,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('pages.book.create');
+        return view('pages.customer.create');
     }
 
     /**
@@ -37,9 +37,9 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        Book::create($request->all());
+        Customer::create($request->all());
 
-        return redirect()->route('book.index')->with('success', 'Customer added successfully');    
+        return redirect()->route('customer.index')->with('success', 'Customer added successfully');
     }
 
     /**
@@ -50,8 +50,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book = Book::findOrfail($id);
-        return view('pages.book.show', compact('book'));
+        $customer = Customer::findOrfail($id);
+        return view('pages.customer.show', compact('customer'));
     }
 
     /**
@@ -62,8 +62,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $book = Book::findOrfail($id);
-        return view('pages.book.edit', compact('book'));
+        $customer = Customer::findOrfail($id);
+        return view('pages.customer.edit', compact('customer'));
     }
 
     /**
@@ -75,10 +75,10 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $book = Book::findOrfail($id);
+        $customer = Customer::findOrfail($id);
 
-        $book->update($request->all());
-        return redirect()->route('book.index')->with('success', 'Customer updated successfully');
+        $customer->update($request->all());
+        return redirect()->route('customer.index')->with('success', 'Customer updated successfully');
     }
 
     /**
@@ -89,11 +89,10 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        $book = Book::findOrfail($id);
+        $customer = Customer::findOrfail($id);
 
-        $book->delete();
+        $customer->delete();
 
-        return redirect()->route('book.index')->with('success', 'Customer deleted successfully');
-
+        return redirect()->route('customer.index')->with('success', 'Customer deleted successfully');
     }
 }

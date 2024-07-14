@@ -30,10 +30,11 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">Login</div>
-                    @if(Session::has('succes'))
-                        <div class="alert alert-success" role="alert"> {{ Session::get('succesi') }}</div>
-                    @endif
-
+                        @if (session()->has('ihwan'))
+                        <div class="alert alert-success">
+                            {{ session()->get('ihwan') }}
+                        </div>
+                        @endif
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
